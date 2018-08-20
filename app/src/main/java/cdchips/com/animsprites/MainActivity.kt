@@ -40,25 +40,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val spa = SpriteAnimator(this,R.drawable.sprite_run,8,2,16)
 
-
-
-    }
-
-
-
-    fun getBitmapFromAssets(context:Context,
-                            filepath: String): Bitmap? {
-        var bitmap: Bitmap? = null
-
-        try {
-            bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.sprite_run);
-        } catch (ioe: IOException) {
-            // manage exception
-        } finally {
+        val iv = findViewById<ImageView>(R.id.iv_sprite)
+        val anim = spa.getAnimation(50,0,7)
+        if(anim!=null){
+            iv.setImageDrawable(anim)
+            iv.scaleType = ImageView.ScaleType.FIT_CENTER
+            anim.start()
         }
 
-        return bitmap
     }
+
+
 
 }
